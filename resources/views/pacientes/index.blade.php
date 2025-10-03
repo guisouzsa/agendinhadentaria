@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacientes</title>
-</head>
-<body>
+@extends('master')
+
+@section('title', 'Pacientes')
+
+@section('content')
     <h1>Meus Pacientes</h1>
 
-    <a href="{{ route('pacientes.create') }}">Cadastrar Novo Paciente</a><br><br>
+    <a href="{{ route('pacientes.create') }}" class="btn btn-success mb-3">Cadastrar Novo Paciente</a>
 
-    <table border="1" cellpadding="5" cellspacing="0">
-        <thead>
+    <table class="table table-bordered table-striped">
+        <thead class="table-primary">
             <tr>
                 <th>Nome</th>
                 <th>Data</th>
@@ -32,16 +29,15 @@
                 <td>{{ $paciente->status }}</td>
                 <td>{{ $paciente->email }}</td>
                 <td>
-                    <a href="{{ route('pacientes.edit', $paciente->id) }}">Editar</a> |
-                    <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('pacientes.edit', $paciente->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este paciente?')">Deletar</button>
+                        <button onclick="return confirm('Tem certeza que deseja deletar este paciente?')" class="btn btn-danger btn-sm">Deletar</button>
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-</body>
-</html>
+@endsection

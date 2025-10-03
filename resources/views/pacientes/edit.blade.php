@@ -1,39 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Paciente</title>
-</head>
-<body>
+@extends('master')
+
+@section('title', 'Editar Paciente')
+
+@section('content')
     <h1>Editar Paciente</h1>
 
-    <form action="{{ route('pacientes.update', $paciente->id) }}" method="POST">
+    <form action="{{ route('pacientes.update', $paciente->id) }}" method="POST" class="mb-5">
         @csrf
         @method('PUT')
 
-        Nome:<br>
-        <input type="text" name="nomePaciente" value="{{ $paciente->nomePaciente }}"><br><br>
+        <div class="mb-3">
+            <label for="nomePaciente" class="form-label">Nome:</label>
+            <input type="text" id="nomePaciente" name="nomePaciente" value="{{ $paciente->nomePaciente }}" class="form-control" required>
+        </div>
 
-        Data:<br>
-        <input type="date" name="data" value="{{ $paciente->data }}"><br><br>
+        <div class="mb-3">
+            <label for="data" class="form-label">Data:</label>
+            <input type="date" id="data" name="data" value="{{ $paciente->data }}" class="form-control" required>
+        </div>
 
-        Hora:<br>
-        <input type="time" name="hora" value="{{ $paciente->hora }}"><br><br>
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora:</label>
+            <input type="time" id="hora" name="hora" value="{{ $paciente->hora }}" class="form-control" required>
+        </div>
 
-        Procedimento:<br>
-        <input type="text" name="procedimento" value="{{ $paciente->procedimento }}"><br><br>
+        <div class="mb-3">
+            <label for="procedimento" class="form-label">Procedimento:</label>
+            <input type="text" id="procedimento" name="procedimento" value="{{ $paciente->procedimento }}" class="form-control" required>
+        </div>
 
-        Status:<br>
-        <input type="text" name="status" value="{{ $paciente->status }}"><br><br>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status:</label>
+            <input type="text" id="status" name="status" value="{{ $paciente->status }}" class="form-control" required>
+        </div>
 
-        Email:<br>
-        <input type="email" name="email" value="{{ $paciente->email }}"><br><br>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" value="{{ $paciente->email }}" class="form-control">
+        </div>
 
-        <button type="submit">Salvar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 
-    <br>
-    <a href="{{ route('pacientes.index') }}">Voltar</a>
-</body>
-</html>
+    <a href="{{ route('pacientes.index') }}" class="btn btn-secondary">Voltar</a>
+@endsection

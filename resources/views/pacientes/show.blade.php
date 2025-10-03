@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Paciente</title>
-</head>
-<body>
+@extends('master')
+
+@section('title', 'Detalhes do Paciente')
+
+@section('content')
     <h1>Detalhes do Paciente</h1>
 
-    Nome: {{ $paciente->nomePaciente }}<br>
-    Data: {{ $paciente->data }}<br>
-    Hora: {{ $paciente->hora }}<br>
-    Procedimento: {{ $paciente->procedimento }}<br>
-    Status: {{ $paciente->status }}<br>
-    Email: {{ $paciente->email }}<br><br>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Nome:</strong> {{ $paciente->nomePaciente }}</li>
+        <li class="list-group-item"><strong>Data:</strong> {{ $paciente->data }}</li>
+        <li class="list-group-item"><strong>Hora:</strong> {{ $paciente->hora }}</li>
+        <li class="list-group-item"><strong>Procedimento:</strong> {{ $paciente->procedimento }}</li>
+        <li class="list-group-item"><strong>Status:</strong> {{ $paciente->status }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ $paciente->email }}</li>
+    </ul>
 
-    <a href="{{ route('pacientes.edit', $paciente->id) }}">Editar</a> |
-    <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline;">
+    <a href="{{ route('pacientes.edit', $paciente->id) }}" class="btn btn-warning">Editar</a>
+
+    <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline-block;">
         @csrf
         @method('DELETE')
-        <button type="submit">Deletar</button>
-    </form> |
-    <a href="{{ route('pacientes.index') }}">Voltar</a>
-</body>
-</html>
+        <button class="btn btn-danger" onclick="return confirm('Deseja deletar este paciente?')">Deletar</button>
+    </form>
+
+    <a href="{{ route('pacientes.index') }}" class="btn btn-secondary">Voltar</a>
+@endsection

@@ -20,7 +20,6 @@ class PacienteController extends Controller
 
     public function store(Request $request)
     {
-        // Validação básica
         $request->validate([
             'nomePaciente' => 'required|string|max:255',
             'data' => 'required|date',
@@ -47,7 +46,7 @@ class PacienteController extends Controller
 
     public function update(Request $request, Paciente $paciente)
     {
-        // Validação básica
+    
         $request->validate([
             'nomePaciente' => 'required|string|max:255',
             'data' => 'required|date',
